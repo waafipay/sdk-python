@@ -1,0 +1,6 @@
+
+
+class EMethod:
+
+    MWALLET_ACCOUNT = "MWALLET_ACCOUNT"
+    CREDIT_CARD = "CREDIT_CARD"
