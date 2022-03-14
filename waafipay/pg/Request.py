@@ -18,6 +18,44 @@ class Request:
     headers = {'Content-type': LibraryConstants.APPLICATION_JSON_TEXT}
 
     @classmethod
+    def processHppresp(cls, request, url, response, read_timeout=30):
+        """
+        :param request: it contain head and body which we want to transmit over network
+        :param url: on which we want to make hit
+        :param response: object in which value of response will be putted
+        :param read_timeout: this is in "Second" unit
+        :return: None, it is just setting value in response object
+        """
+        cls.headers[LibraryConstants.X_REQUEST_ID] = MerchantProperty.request_id
+        post_args = {
+            'headers': cls.headers,
+            'timeout': (MerchantProperty.connect_timeout, read_timeout),
+            'data': format_string(request)
+        }
+        res = post(url, **post_args)
+        request_response = res.json()
+        return request_response
+
+    @classmethod
+    def processHpp(cls, request, url, response, read_timeout=30):
+        """
+        :param request: it contain head and body which we want to transmit over network
+        :param url: on which we want to make hit
+        :param response: object in which value of response will be putted
+        :param read_timeout: this is in "Second" unit
+        :return: None, it is just setting value in response object
+        """
+        cls.headers[LibraryConstants.X_REQUEST_ID] = MerchantProperty.request_id
+        post_args = {
+            'headers': cls.headers,
+            'timeout': (MerchantProperty.connect_timeout, read_timeout),
+            'data': format_string(request)
+        }
+        res = post(url, **post_args)
+        request_response = res.json()
+        return request_response
+
+    @classmethod
     def process(cls, request, url, response, read_timeout=30):
         """
         :param request: it contain head and body which we want to transmit over network
