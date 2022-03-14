@@ -1,4 +1,6 @@
 from waafipay.merchant.models.PaymentDetail import PaymentDetailsBuilder
+from waafipay.merchant.models.PaymentHppDetail import PaymentDetailHppBuilder
+from waafipay.merchant.models.PaymentDetailHppResponseBuilder import PaymentDetailHppResponseBuilder
 from waafipay.merchant.models.PaymentDetailCommit import PaymentCommitDetailBuilder
 from waafipay.merchant.models.PaymentRefund import PaymentRefundlBuilder
 
@@ -18,7 +20,7 @@ from waafipay.pg.models.ServiceParamsRefund import ServiceParamsRefund
 from waafipay.pg.models.TransactionInfo import TransactionInfo
 from waafipay.VERSION import package_version
 
-__all__ = [TransactionInfo, ServiceParamsRefund, ServiceParams, PayerInfo, PaymentMode, EMethod, EChannelId, EnumCurrency,
-            LibraryConstants, MerchantProperty, Payment, PaymentCommitDetailBuilder, PaymentDetailsBuilder,
+__all__ = [TransactionInfo, ServiceParamsRefund, ServiceParams, PayerInfo, PaymentMode, EMethod, EChannelId, EnumCurrency, PaymentDetailHppResponseBuilder,
+            LibraryConstants, MerchantProperty, Payment, PaymentCommitDetailBuilder, PaymentDetailsBuilder,PaymentDetailHppBuilder, 
            PaymentRefundlBuilder, package_version]
 
