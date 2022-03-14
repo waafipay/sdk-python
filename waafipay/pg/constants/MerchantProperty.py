@@ -22,6 +22,8 @@ class MerchantProperty:
     apiUserId = None
     merchantUid = None
     apiKey = None
+    redirecturlsuc = None
+    redirecturlfail = None
     
 
     """callback url on which waafipay will respond for api calls"""
@@ -44,6 +46,22 @@ class MerchantProperty:
     def set_logger_name(cls, request_id):
         cls.logger.name = "Waafipay " + request_id
         cls.request_id = request_id
+
+    @classmethod
+    def get_redirecturlsuc(cls):
+        return cls.redirecturlsuc
+
+    @classmethod
+    def set_redirecturlsuc(cls, redirecturlsuc):
+        cls.redirecturlsuc = redirecturlsuc
+
+    @classmethod
+    def get_redirecturlfail(cls):
+        return cls.redirecturlfail
+
+    @classmethod
+    def set_redirecturlfail(cls, redirecturlfail):
+        cls.redirecturlfail = redirecturlfail
 
     @classmethod
     def get_apiUserId(cls):
@@ -92,6 +110,29 @@ class MerchantProperty:
         cls.set_apiUserId(apiUserId)
         cls.set_merchantUid(merchantUid)
         cls.set_apiKey(apiKey)
+
+    @classmethod
+    def hppinitialize(cls, environment, apiUserId, merchantUid, apiKey, redirecturlsuc, redirecturlfail):
+        """
+        :param environment:
+        :param apiUserId:
+        :param merchantUid:
+        :param apiKey:
+        :return:
+        """
+        cls.is_initialized = True
+
+        """initiate logger"""
+        cls.logger.setLevel(cls.logging_level)
+        cls.logger.addHandler(cls.log_handler)
+        cls.logger.disabled = cls.logger_disable
+
+        cls.set_environment(environment)
+        cls.set_apiUserId(apiUserId)
+        cls.set_merchantUid(merchantUid)
+        cls.set_apiKey(apiKey)
+        cls.set_redirecturlfail(redirecturlfail)
+        cls.set_redirecturlsuc(redirecturlsuc)
 
     @classmethod
     def set_merchantUid(cls, merchantUid):
